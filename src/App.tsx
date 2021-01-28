@@ -1,26 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { ReactElement } from "react";
+import { Router, Route, Switch } from "react-router-dom";
+import QrReader from "./QrReader";
+import { createBrowserHistory } from "history";
+import Ticket from "./Ticket";
 
-function App() {
+const history = createBrowserHistory();
+export default function App(): ReactElement {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router history={history}>
+      <Switch>
+        <Route exact path="/">
+          <QrReader />
+        </Route>
+        <Route path="/ticket">
+          <Ticket />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
-
-export default App;
